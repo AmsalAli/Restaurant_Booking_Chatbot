@@ -984,7 +984,14 @@ if st.button("Download Database"):
             data = f.read()
 
         # Download through Colab
-        files.download('reservations.db')
+        # files.download('reservations.db')
+        with open("data/reservations.db", "rb") as f:
+          st.download_button(
+            label="Download Reservations DB",
+            data=f,
+            file_name="reservations.db",
+            mime="application/octet-stream"
+          )
 
         st.success("Database downloaded successfully!")
     except Exception as e:
