@@ -553,4 +553,6 @@ st.markdown(
         <small>Powered by Streamlit Chatbot</small>
     </div>
     """,
+
     unsafe_allow_html=True,
+)
