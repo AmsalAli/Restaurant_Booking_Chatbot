@@ -24,45 +24,49 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Background styling */
+    :root {
+        --bg: var(--background-color);
+        --text: var(--text-color);
+        --card: var(--secondary-background-color);
+        --primary: var(--primary-color);
+    }
+
+    /* App background & spacing (theme-aware) */
     .stApp {
-        background-color: #f8f9fa;
+        background-color: var(--bg);
         padding: 20px;
     }
 
-    /* Header styling */
+    /* Header (use theme vars so it works in dark & light) */
     h1 {
-        color: #4A4A4A;
+        color: var(--text);
         font-family: 'Helvetica Neue', sans-serif;
         font-weight: bold;
         padding-bottom: 15px;
-        border-bottom: 2px solid #FF5A5F;
+        border-bottom: 2px solid var(--primary);
         margin-bottom: 30px;
     }
 
-    /* Chat message styling */
-    .stChatMessage[data-testid="user-stChatMessage"] {
-        background-color: #E6F7FF;
-        border: 1px solid #B3E5FC;
-        border-radius: 12px;
-        padding: 12px;
-        margin: 10px 0;
-    }
-
+    /* Chat bubbles (use secondary background for contrast) */
+    .stChatMessage[data-testid="user-stChatMessage"],
     .stChatMessage[data-testid="assistant-stChatMessage"] {
-        background-color: #F5F5F5;
-        border: 1px solid #E0E0E0;
+        background-color: var(--card);
+        border: 1px solid rgba(0,0,0,0.15);
         border-radius: 12px;
         padding: 12px;
         margin: 10px 0;
+        color: var(--text);
+    }
+    .stChatMessage[data-testid="user-stChatMessage"] {
+        border-left: 4px solid var(--primary);
     }
 
-    /* Buttons */
+    /* Buttons (no hardcoded colors; respect theme) */
     .stButton>button {
         border-radius: 20px;
         font-weight: bold;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: all 0.2s ease;
+        transition: transform 0.2s ease;
     }
     .stButton>button:hover { transform: translateY(-1px); }
     </style>
@@ -556,3 +560,4 @@ st.markdown(
 
     unsafe_allow_html=True,
 )
+
